@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Click Counter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .counter-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            min-width: 220px; 
+            max-width: 250px; 
+        }
+        
+        .count {
+            font-size: 4rem;
+            margin: 1rem 0;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.2rem; 
+            margin: 0.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-click {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-click:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-reset {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background-color: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 0.6;
+        }
+        
+        .button-active {
+            opacity: 0.6 !important;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 1.6rem;  
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <h1><b>Click Counter</b></h1>
+        <div class="count" id="counter">0</div>
+        <div class="buttons">
+            <button class="btn btn-click" id="click">Click</button>
+            <button class="btn btn-reset" id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script>
+       
+        let count = 0;
+        const counterDisplay = document.getElementById('counter');
+        
+      
+        const clickBtn = document.getElementById('click');
+        const resetBtn = document.getElementById('reset');
+        
+       
+        function updateDisplay() {
+            counterDisplay.textContent = count;
+        }
+        
+        
+        function simulateButtonPress(button) {
+            button.classList.add('button-active');
+            
+            
+            setTimeout(() => {
+                button.classList.remove('button-active');
+            }, 200);
+        }
+        
+       
+        clickBtn.addEventListener('click', () => {
+            count++;
+            updateDisplay();
+            simulateButtonPress(clickBtn);
+        });
+        
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            updateDisplay();
+            simulateButtonPress(resetBtn);
+        });
+    </script>
+</body>
+</html>
